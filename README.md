@@ -1,2 +1,1 @@
-# thinking-in-codellama
-Inference code for CodeLlama models
+# thinking-in-LLM
