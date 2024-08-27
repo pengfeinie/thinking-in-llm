@@ -64,18 +64,6 @@ translate text that it generates into that language.
 For a list of supported codes, see
 https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-language.
 > Project language [en]: en
-
-Creating file D:\shared_codes\thinking-in-LLM\source\conf.py.
-Creating file D:\shared_codes\thinking-in-LLM\source\index.rst.
-Creating file D:\shared_codes\thinking-in-LLM\Makefile.
-Creating file D:\shared_codes\thinking-in-LLM\make.bat.
-
-Finished: An initial directory structure has been created.
-
-You should now populate your master file D:\shared_codes\thinking-in-LLM\source\index.rst and create other documentation
-source files. Use the Makefile to build the docs, like so:
-   make builder
-where "builder" is one of the supported builders, e.g. html, latex or linkcheck.
 ```
 
 此时我们在thinking-in-LLM 目录中执行 `make html`，就会在 build/html 目录生成 html 相关文件。这样就可以直接在浏览器中打开 index.html。
@@ -114,3 +102,5 @@ extensions = [
 ## 1.3 **文档托管**
 
 首先在 GitHub 上创建一个 thinking-in-LLM 仓库。在 Read the Docs 网站 [https://readthedocs.org/](https://link.zhihu.com/?target=https%3A//readthedocs.org/) 注册，并绑定 GitHub 账户。点击“Import a Project”导入项目，输入项目名称和仓库地址即可。
+
+[https://thinking-in-llm.readthedocs.io/](https://thinking-in-llm.readthedocs.io/)
