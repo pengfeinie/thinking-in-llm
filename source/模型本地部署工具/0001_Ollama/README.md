@@ -1,6 +1,10 @@
-# 1. Ollama
+# Ollama基础入门
 
-## 1.1 什么是Ollama?
+Ollama是一个专为在本地环境中运行和定制大型语言模型而设计的工具。它提供了一个简单而高效的接口，用于创建、运行和管理这些模型，同时还提供了一个丰富的预构建模型库，可以轻松集成到各种应用程序中。Ollama的目标是使大型语言模型的部署和交互变得简单，无论是对于开发者还是对于终端用户。
+
+## 1. Ollama
+
+### 1.1 什么是Ollama?
 
 **Ollama**官网：https://ollama.com/，官方网站的介绍就一句话：**Get up and running with large language models.** （开始使用大语言模型）。Ollama是一个开源的 LLM（大型语言模型）服务工具，用于简化在本地运行大语言模型，降低使用大语言模型的门槛，使得大模型的开发者、研究人员和爱好者能够在本地环境快速实验、管理和部署最新大语言模型, 包括如Qwen2、Llama3、Phi3、Gemma2等开源的大型语言模型，Ollama是大语言模型便捷的管理和运维工具。Llama是 Meta 公司开源的备受欢迎的一个通用大语言模型，和其他大模型一样，Llama可以通过Ollama进行管理部署和推理等。
 
@@ -8,7 +12,7 @@
 
 **Ollama**官方 GitHub 源代码仓库：[https://github.com/ollama/ollama/](https://github.com/ollama/ollama)
 
-## 1.2 安装Ollama大语言模型工具
+### 1.2 安装Ollama大语言模型工具
 
 在官网首页，我们可以直接下载**Ollama**安装程序（支持 Windows/MacOS/Linux）：https://ollama.com/
 
@@ -24,7 +28,7 @@
 8. **OLLAMA_DEBUG**：输出 Debug 日志标识，应用研发阶段可以设置成**1**，即输出详细日志信息，便于排查问题。
 9. **OLLAMA_MAX_LOADED_MODELS**：最多同时加载到内存中模型的数量，默认为**1**，即只能有 1 个模型在内存中。
 
-### 1.3 Ollama 管理本地已有大模型
+#### 1.3 Ollama 管理本地已有大模型
 
 - 展示本地大模型列表：`ollama list`
 
@@ -74,9 +78,9 @@ qwen2:0.5b              6f48b936a09f    352 MB  29 minutes ago
 qwen2:7b                e0d4e1163c58    4.4 GB  10 days ago
 ```
 
-### 1.4 Ollama下载大模型
+#### 1.4 Ollama下载大模型
 
-#### 1.4.1 Ollama 从远程仓库下载大模型到本地
+##### 1.4.1 Ollama 从远程仓库下载大模型到本地
 
 - 下载或者更新本地大模型：`ollama pull 本地/远程仓库模型名称`
 
@@ -144,7 +148,7 @@ qwen2:7b        e0d4e1163c58    4.4 GB  10 days ago
         Version 2.0, January 2004
 ```
 
-#### 1.4.2 Ollama 导入 GGUF 模型文件到本地磁盘
+##### 1.4.2 Ollama 导入 GGUF 模型文件到本地磁盘
 
 若我们已经从 HF 或者 ModeScope 下载了 GGUF 文件（文件名为：**Meta-Llama-3-8B-Instruct.Q4_K_M.gguf**），在我们存放`Llama3-8B`的 GGUF 模型文件目录中，创建一个文件名为`Modelfile`的文件，该文件的内容如下：
 
@@ -165,7 +169,7 @@ success
 
 导入成功之后，我们就可以通过`list`命名，看到名为**Llama-3-8B**的本地模型了，后续可以和其他模型一样进行管理了。
 
-#### 1.4.3 Ollama 导入 safetensors 模型文件到本地磁盘
+##### 1.4.3 Ollama 导入 safetensors 模型文件到本地磁盘
 
 官方操作文档：https://ollama.fan/getting-started/import/#importing-pytorch-safetensors
 
