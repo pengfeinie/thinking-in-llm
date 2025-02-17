@@ -1,11 +1,12 @@
-模型本地部署工具
+模型部署
 =================================
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 4
    :caption: Contents:
 
    0001_Ollama/README.md
+   0002_CheryStudio/README.md
 
 
 

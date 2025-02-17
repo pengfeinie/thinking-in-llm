@@ -7,10 +7,10 @@ Welcome to thinking-in-LLM's documentation!
 ===========================================
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 4
    :caption: Contents:
 
-   模型本地部署工具/index
+   0001_模型部署/index
 
 
 
