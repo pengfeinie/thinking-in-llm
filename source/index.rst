@@ -10,6 +10,7 @@ Welcome to thinking-in-LLM's documentation!
    :maxdepth: 4
    :caption: Contents:
 
+   0000_AI客户端/index
    0001_模型部署/index
 
 
