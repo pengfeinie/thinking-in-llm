@@ -83,3 +83,11 @@ ollama run deepseek-r1:1.5b
 ![image-20250214180627784](images/202502141806876.png)
 
 点击右下角的保存和嵌入按钮即可上传你的资料。通过Anything LLM管理超大文档时高效、低耗。只需要一次就可以嵌入（Embedding)一个庞大的文档或文字记录，比其他文档聊天机器人解决方案节省超多成本。
+
+
+
+
+
+**参考：**
+
+[本地部署Anything LLM+Ollama+DeepSeek R1打造智能知识库远程](https://www.cpolar.com/blog/local-deployment-of-anything-llmollamadeepseek-r1-to-create-intelligent-knowledge-base-and-remote-access)
