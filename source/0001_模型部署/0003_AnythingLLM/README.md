@@ -1,4 +1,4 @@
-# 本地部署Anything LLM+Ollama+DeepSeek R1
+# Anything LLM+Ollama本地部署DeepSeek R1
 
 本文主要介绍如何在Windows电脑上本地安装Ollama并部署DeepSeek R1大模型，然后使用强大的开源AI工具Anything LLM结合cpolar内网穿透工具轻松实现随时随地使用与上传内容来训练本地部署的大模型，无需公网IP，也不用准备云服务器那么麻烦！
 
