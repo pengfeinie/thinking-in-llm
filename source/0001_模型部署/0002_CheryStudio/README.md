@@ -108,7 +108,8 @@ ollama run deepseek-r1:1.5b
 
 现在我们就已经能够在本地Windows电脑上通过ollama正常使用deepseek-r1模型与AI进行聊天了！
 
-3.2**配置**
+### 3.2**配置**
+
 打开 Cherry Studio，在设置中找到 “模型设置” 选项。
 
 ![](images/v2-719ee828c47ed806168420abb0995df6_1440w.jpg)
