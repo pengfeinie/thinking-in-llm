@@ -80,7 +80,7 @@ print(response.content)
 
 ![](images/2025-03-03_180314.png)
 
-### 3.1 例子2
+### 3.2 例子2
 
 ```python
 from langchain_openai import ChatOpenAI
@@ -107,7 +107,7 @@ response = chat.invoke(messages)
 print(response.content)
 ```
 
-### 3.1 例子3
+### 3.3 例子3
 
 ```python
 from langchain_openai import ChatOpenAI
@@ -125,6 +125,90 @@ chat = ChatOpenAI(
 messages = [
     SystemMessage(content="You are a helpful assistant"),
     HumanMessage(content="介绍一下你自己"),
+]
+
+# 调用模型并获取响应
+response = chat.invoke(messages)
+
+# 打印响应内容
+print(response.content)
+```
+
+### 3.4 例子4
+
+```python
+from langchain_openai import ChatOpenAI
+from langchain.prompts import PromptTemplate
+
+# 初始化 ChatOpenAI 实例
+chat = ChatOpenAI(
+    model="deepseek-chat",
+    openai_api_key="sk-bf9cb507120c42d49366e6aabd1f4157",
+    openai_api_base="https://api.deepseek.com",
+    streaming=False
+)
+
+prompt = PromptTemplate.from_template(template="你是一个{name}, 帮我起一个具有{country}特色的{sex}名字.")
+messages = prompt.format(name="算命大师", country="法国", sex="女孩")
+
+# 调用模型并获取响应
+response = chat.invoke(messages)
+
+# 打印响应内容
+print(response.content)
+```
+
+### 3.5 例子5
+
+```python
+from langchain_openai import ChatOpenAI
+from langchain.prompts import ChatPromptTemplate
+
+# 初始化 ChatOpenAI 实例
+chat = ChatOpenAI(
+    model="deepseek-chat",
+    openai_api_key="sk-bf9cb507120c42d49366e6aabd1f4157",
+    openai_api_base="https://api.deepseek.com",
+    streaming=False
+)
+
+chat_prompt = ChatPromptTemplate.from_messages(
+    [
+    ("system", "你是一个起名大师，你的名字叫{name}"),
+    ("human", "你好{name}, 你感觉如何？"),
+    ("ai", "你好，我状态非常好."),
+    ("human", "{user_input}"),
+    ]
+)
+messages = chat_prompt.format_messages(name="聂大师", user_input="你叫什么名字")
+
+# 调用模型并获取响应
+response = chat.invoke(messages)
+
+# 打印响应内容
+print(response.content)
+```
+
+### 3.6 例子6
+
+```python
+from langchain_openai import ChatOpenAI
+from langchain.schema import HumanMessage, SystemMessage, AIMessage
+
+# 初始化 ChatOpenAI 实例
+chat = ChatOpenAI(
+    model="deepseek-chat",
+    openai_api_key="sk-bf9cb507120c42d49366e6aabd1f4157",
+    openai_api_base="https://api.deepseek.com",
+    streaming=False
+)
+
+# 构建消息列表
+messages = [
+    SystemMessage(content="你是一个起名大师，你的名字叫徐大师"),
+    HumanMessage(content="你好徐大师, 你感觉如何？"),
+    AIMessage(content="你好，我状态非常好."),
+    HumanMessage(content="你叫什么名字"),
 ]
 
 # 调用模型并获取响应
