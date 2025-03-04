@@ -218,3 +218,36 @@ response = chat.invoke(messages)
 print(response.content)
 ```
 
+### 3.7 例子7
+
+```python
+from langchain_openai import ChatOpenAI
+from langchain.schema import HumanMessage, SystemMessage, AIMessage
+
+# 初始化 ChatOpenAI 实例
+chat = ChatOpenAI(
+    model="deepseek-chat",
+    openai_api_key="sk-bf9cb507120c42d49366e6aabd1f4157",
+    openai_api_base="https://api.deepseek.com",
+    streaming=False
+)
+
+# 定义变量
+user_name = "徐大师"
+ai_status = "非常好"
+
+# 构建消息列表
+messages = [
+    SystemMessage(content=f"你是一个起名大师，你的名字叫{user_name}"),
+    HumanMessage(content=f"你好{user_name}, 你感觉如何？"),
+    AIMessage(content=f"你好，我状态{ai_status}."),
+    HumanMessage(content="你叫什么名字"),
+]
+
+# 调用模型并获取响应
+response = chat.invoke(messages)
+
+# 打印响应内容
+print(response.content)
+```
+
