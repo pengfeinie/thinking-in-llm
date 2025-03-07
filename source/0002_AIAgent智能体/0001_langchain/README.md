@@ -251,3 +251,20 @@ response = chat.invoke(messages)
 print(response.content)
 ```
 
+### **使用 `langchain_community` 的通用接口**
+
+如果 DeepSeek 的 API 符合通用接口（如 OpenAI 兼容的 API），你可以直接使用 `langchain_community` 中已有的工具（如 `OpenAI` 或 `ChatOpenAI`）进行集成。例如，如果 DeepSeek 提供了 OpenAI 兼容的 API，可以通过以下方式调用：
+
+```c++
+from langchain_community.chat_models import ChatOpenAI
+
+# 假设 DeepSeek 的 API 兼容 OpenAI
+deepseek_chat = ChatOpenAI(
+    model="deepseek-chat",
+    api_key="sk-bf9cb507120c42d49366e6aabd1f4157",
+    base_url="https://api.deepseek.com"  # DeepSeek 的 API 地址
+)
+response = deepseek_chat.predict("Hello, world!")
+print(response)
+```
+
