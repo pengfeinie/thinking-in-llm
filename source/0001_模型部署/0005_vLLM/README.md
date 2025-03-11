@@ -20,3 +20,15 @@ bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
 ```
 
 ![](images/2025-03-11_145436.png)
+
+#### 2.1.1 激活miniconda
+
+```bash
+~/miniconda/bin/conda init bash
+~/miniconda/bin/conda init zsh
+source /root/.bashrc
+```
+
+![](images/2025-03-11_152026.png)
+
+![](images/2025-03-11_152207.png)
