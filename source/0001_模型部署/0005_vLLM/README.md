@@ -34,7 +34,7 @@ source /root/.zshrc
 
 ![](images/2025-03-11_152207.png)
 
-#### 2.1.1 修改镜像源
+#### 2.1.2 修改镜像源
 
 ```bash
 vim /root/miniconda3/.condarc
@@ -60,3 +60,81 @@ custom_channels:
   simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 ```
 
+#### 2.1.3 创建conda虚拟环境
+
+```bash
+conda create --name vLLM python==3.10 -y
+conda activate vLLM
+```
+
+![](images/2025-03-11_164411.png)
+
+#### 2.1.4 安装驱动
+
+```bash
+apt update
+apt upgrade -y
+apt install -y build-essential dkms
+
+vim /etc/modprobe.d/blacklist-nouv.conf
+```
+
+![](images/2025-03-11_165032.png)
+
+```bin
+update-initramfs -u
+```
+
+![](images/2025-03-11_165219.png)
+
+
+
+[NVIDIA GeForce 驱动程序 - N 卡驱动 | NVIDIA](https://www.nvidia.cn/geforce/drivers/)
+
+![](images/2025-03-11_165713.png)
+
+![](images/2025-03-11_170509.png)
+
+![](images/2025-03-11_170652.png)
+
+```bash
+reboot
+conda activate vLLM
+nvidia-smi
+```
+
+![](images/2025-03-11_171500.png)
+
+[CUDA Toolkit Archive | NVIDIA Developer](https://developer.nvidia.com/cuda-toolkit-archive)
+
+![](images/2025-03-11_171839.png)
+
+![](images/2025-03-11_172002.png)
+
+![](images/2025-03-11_172431.png)
+
+```
+vim /root/.bashrc
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-12.4/lib64
+export PATH=$PATH:/usr/local/cuda-12.4/bin
+export CUDA_HOME=$CUDA_HOME:/usr/local/cuda-12.4
+
+source /root/.bashrc
+```
+
+![](images/2025-03-11_172906.png)
+
+![](images/2025-03-11_173321.png)
+
+
+
+[download.pytorch.org/whl/torch/](https://download.pytorch.org/whl/torch/)
+
+![](images/2025-03-11_174452.png)
+
+![](images/2025-03-11_175221.png)
+
+![](images/2025-03-11_175411.png)
+
+![](images/2025-03-11_175601.png)
