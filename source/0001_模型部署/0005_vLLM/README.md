@@ -27,8 +27,36 @@ bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
 ~/miniconda/bin/conda init bash
 ~/miniconda/bin/conda init zsh
 source /root/.bashrc
+source /root/.zshrc
 ```
 
 ![](images/2025-03-11_152026.png)
 
 ![](images/2025-03-11_152207.png)
+
+#### 2.1.1 修改镜像源
+
+```bash
+vim /root/miniconda3/.condarc
+```
+
+![](images/2025-03-11_160314.png)
+
+```bash
+show_channel_urls: true
+channels:
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free
+custom_channels:
+  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  pytorch-lts: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+```
+
