@@ -251,6 +251,46 @@ response = chat.invoke(messages)
 print(response.content)
 ```
 
+### 3.8 例子8
+
+```c++
+from langchain_openai import ChatOpenAI
+from langchain.schema import HumanMessage, SystemMessage, AIMessage
+from langchain_core.output_parsers import StrOutputParser
+
+# 初始化 ChatOpenAI 实例
+chat = ChatOpenAI(
+    model="deepseek-chat",
+    openai_api_key="sk-bf9cb507120c42d49366e6aabd1f4157",
+    openai_api_base="https://api.deepseek.com",
+    streaming=False
+)
+
+# 定义变量
+user_name = "徐大师"
+ai_status = "非常好"
+
+# 构建消息列表
+messages = [
+    SystemMessage(content=f"你是一个起名大师，你的名字叫{user_name}"),
+    HumanMessage(content=f"你好{user_name}, 你感觉如何？"),
+    AIMessage(content=f"你好，我状态{ai_status}."),
+    HumanMessage(content="你叫什么名字"),
+]
+
+output_parser = StrOutputParser()
+
+chain = chat | output_parser
+
+# 调用模型并获取响应
+response = chain.invoke(messages)
+
+# 打印响应内容
+print(response)
+```
+
+
+
 ### **使用 `langchain_community` 的通用接口**
 
 如果 DeepSeek 的 API 符合通用接口（如 OpenAI 兼容的 API），你可以直接使用 `langchain_community` 中已有的工具（如 `OpenAI` 或 `ChatOpenAI`）进行集成。例如，如果 DeepSeek 提供了 OpenAI 兼容的 API，可以通过以下方式调用：
@@ -268,3 +308,16 @@ response = deepseek_chat.predict("Hello, world!")
 print(response)
 ```
 
+
+
+
+
+
+
+
+
+
+
+
+
+[【LangChain教程】2025年吃透LangChain+LangGraph快速入门与底层原理教程，全程干货无废话，耗时千余小时研发，让你少走百分之99弯路！_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1duKsevEwK?spm_id_from=333.788.videopod.episodes&vd_source=68a8583f88fde22ce39c9c2212b4cac4)
