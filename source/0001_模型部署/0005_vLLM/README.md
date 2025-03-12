@@ -138,3 +138,24 @@ source /root/.bashrc
 ![](images/2025-03-11_175411.png)
 
 ![](images/2025-03-11_175601.png)
+
+### 2.2 部署模型
+
+#### 2.2.1 下载模型方式1
+
+[deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B at main](https://hf-mirror.com/deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B/tree/main)
+
+![](images/2025-03-12_091422.png)
+
+#### 2.2.2 下载模型方式2
+
+```bash
+modelscope download --model deepseek-ai/Deepseek-R1-Distill-Qwen-32B --local_dir /data3/models/deepseek-ai/Deepseek-R1-Distill-Qwen-32B
+```
+
+#### 2.2.3 运行
+
+```bash
+vllm serve /data3/models/deepseek-ai/Deepseek-R1-Distill-Qwen-32B --tensor-parallel-size 4 --max-model-len 32768 --enforce-eager
+```
+
