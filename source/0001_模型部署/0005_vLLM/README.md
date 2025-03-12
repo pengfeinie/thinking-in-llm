@@ -95,6 +95,7 @@ sudo update-initramfs -u
 ```bash
 reboot
 conda activate vLLM
+nvcc --version ## check the cuda version
 nvidia-smi
 ```
 
@@ -121,8 +122,6 @@ source /root/.bashrc
 ![](images/2025-03-11_172906.png)
 
 ![](images/2025-03-11_173321.png)
-
-
 
 [download.pytorch.org/whl/torch/](https://download.pytorch.org/whl/torch/)
 
