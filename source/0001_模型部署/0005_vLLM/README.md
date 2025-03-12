@@ -15,6 +15,7 @@
 [Installing Miniconda - Anaconda](https://www.anaconda.com/docs/getting-started/miniconda/install#macos-linux-installation)
 
 ```bash
+mkdir ~/miniconda3
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
 bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
 ```
@@ -75,19 +76,13 @@ conda activate vLLM
 sudo apt update
 sudo apt upgrade -y
 sudo apt install -y build-essential dkms
-
-vim /etc/modprobe.d/blacklist-nouv.conf
 ```
-
-![](images/2025-03-11_165032.png)
 
 ```bin
 sudo update-initramfs -u
 ```
 
 ![](images/2025-03-11_165219.png)
-
-
 
 [NVIDIA GeForce 驱动程序 - N 卡驱动 | NVIDIA](https://www.nvidia.cn/geforce/drivers/)
 
@@ -150,12 +145,23 @@ source /root/.bashrc
 #### 2.2.2 下载模型方式2
 
 ```bash
-modelscope download --model deepseek-ai/Deepseek-R1-Distill-Qwen-32B --local_dir /data3/models/deepseek-ai/Deepseek-R1-Distill-Qwen-32B
+conda activate vLLM
+
+pip install modelscope
+
+modelscope download --model deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B --local_dir /data/models/deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B
 ```
 
 #### 2.2.3 运行
 
 ```bash
-vllm serve /data3/models/deepseek-ai/Deepseek-R1-Distill-Qwen-32B --tensor-parallel-size 4 --max-model-len 32768 --enforce-eager
+conda activate vLLM
+
+CUDA_VISIBLE_DEVICES=0 vllm serve /data/models/deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B --tensor-parallel-size 1 --max-model-len 32768 --enforce-eager
 ```
 
+
+
+**参考：**
+
+[【保姆级教程4】基于vLLM本地部署企业级DeepSee-R1，30分钟手把手教学，小白_码农皆宜！附 - 4_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1BUR3Y3Ejd/?spm_id_from=333.788.player.switch&vd_source=68a8583f88fde22ce39c9c2212b4cac4&p=5)
