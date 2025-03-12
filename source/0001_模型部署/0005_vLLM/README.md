@@ -24,10 +24,10 @@ bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
 #### 2.1.1 激活miniconda
 
 ```bash
-~/miniconda/bin/conda init bash
-~/miniconda/bin/conda init zsh
-source /root/.bashrc
-source /root/.zshrc
+~/miniconda3/bin/conda init bash
+~/miniconda3/bin/conda init zsh
+source ~/.bashrc
+source ~/.zshrc
 ```
 
 ![](images/2025-03-11_152026.png)
@@ -37,7 +37,7 @@ source /root/.zshrc
 #### 2.1.2 修改镜像源
 
 ```bash
-vim /root/miniconda3/.condarc
+vim ~/miniconda3/.condarc
 ```
 
 ![](images/2025-03-11_160314.png)
@@ -72,9 +72,9 @@ conda activate vLLM
 #### 2.1.4 安装驱动
 
 ```bash
-apt update
-apt upgrade -y
-apt install -y build-essential dkms
+sudo apt update
+sudo apt upgrade -y
+sudo apt install -y build-essential dkms
 
 vim /etc/modprobe.d/blacklist-nouv.conf
 ```
@@ -82,7 +82,7 @@ vim /etc/modprobe.d/blacklist-nouv.conf
 ![](images/2025-03-11_165032.png)
 
 ```bin
-update-initramfs -u
+sudo update-initramfs -u
 ```
 
 ![](images/2025-03-11_165219.png)
