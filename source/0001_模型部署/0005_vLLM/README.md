@@ -110,13 +110,13 @@ nvidia-smi
 ![](images/2025-03-11_172431.png)
 
 ```
-vim /root/.bashrc
+sudo vim ~/.bashrc
 
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-12.4/lib64
 export PATH=$PATH:/usr/local/cuda-12.4/bin
 export CUDA_HOME=$CUDA_HOME:/usr/local/cuda-12.4
 
-source /root/.bashrc
+source ~/.bashrc
 ```
 
 ![](images/2025-03-11_172906.png)
@@ -147,6 +147,7 @@ source /root/.bashrc
 conda activate vLLM
 
 pip install modelscope
+sudo mkdir -p /data/models/deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B
 
 modelscope download --model deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B --local_dir /data/models/deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B
 ```
