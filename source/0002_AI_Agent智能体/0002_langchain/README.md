@@ -38,7 +38,6 @@ source ~/.bashrc
 from langchain_openai import ChatOpenAI
 from langchain.schema import HumanMessage, SystemMessage, AIMessage
 import os
-from langsmith.wrappers import wrap_openai
 
 # 从环境变量中获取 API 密钥
 openai_api_key = os.getenv("OPENAI_API_KEY")
