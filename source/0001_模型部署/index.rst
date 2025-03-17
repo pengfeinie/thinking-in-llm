@@ -10,6 +10,7 @@
    0003_AnythingLLM/README.md
    0004_LMStudio/README.md
    0005_vLLM/README.md
+   0006_vLLM/README.md
 
 
 
