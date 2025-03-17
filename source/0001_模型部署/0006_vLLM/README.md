@@ -81,18 +81,16 @@ sudo update-initramfs -u
 
 ![](images/2025-03-17_103616.png)
 
-![](images/2025-03-11_170509.png)
-
-![](images/2025-03-11_170652.png)
-
 ```bash
+sudo sh NVIDIA-Linux-x86_64-570.124.04.run
+apt install -y cuda-drivers
 reboot
 conda activate vLLM
 nvcc --version ## check the cuda version
 nvidia-smi
 ```
 
-![](images/2025-03-11_171500.png)
+![](images/2025-03-17_100910.png)
 
 [CUDA Toolkit Archive | NVIDIA Developer](https://developer.nvidia.com/cuda-toolkit-archive)
 
@@ -100,7 +98,10 @@ nvidia-smi
 
 ![](images/2025-03-11_172002.png)
 
-![](images/2025-03-11_172431.png)
+```bash
+wget https://developer.download.nvidia.com/compute/cuda/12.8.0/local_installers/cuda_12.8.0_570.86.10_linux.run
+sudo sh cuda_12.8.0_570.86.10_linux.run
+```
 
 ```
 vim /root/.bashrc
@@ -110,11 +111,9 @@ export PATH=$PATH:/usr/local/cuda-12.4/bin
 export CUDA_HOME=$CUDA_HOME:/usr/local/cuda-12.4
 
 source /root/.bashrc
+
+nvcc --version
 ```
-
-![](images/2025-03-11_172906.png)
-
-![](images/2025-03-11_173321.png)
 
 [download.pytorch.org/whl/torch/](https://download.pytorch.org/whl/torch/)
 
