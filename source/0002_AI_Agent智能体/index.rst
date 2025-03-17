@@ -5,7 +5,8 @@ AI Agent入门到精通
    :maxdepth: 4
    :caption: Contents:
 
-   0001_langchain/README.md
+   0001_init_environment/README.md
+   0002_langchain/README.md
 
 
 
