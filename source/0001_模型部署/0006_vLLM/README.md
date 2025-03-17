@@ -99,13 +99,13 @@ sudo sh cuda_12.8.0_570.86.10_linux.run
 ```
 
 ```
-vim /root/.bashrc
+vim ~/.bashrc
 
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-12.8/lib64
 export PATH=$PATH:/usr/local/cuda-12.8/bin
 export CUDA_HOME=$CUDA_HOME:/usr/local/cuda-12.8
 
-source /root/.bashrc
+source ~/.bashrc
 
 nvcc --version
 ```
