@@ -6,6 +6,24 @@
 
 ## 2.演示环境
 
+```bash
+sudo apt update
+sudo apt upgrade -y
+sudo apt install -y build-essential dkms
+sudo update-initramfs -u
+```
+
+[NVIDIA GeForce 驱动程序 - N 卡驱动 | NVIDIA](https://www.nvidia.cn/geforce/drivers/)
+
+![](images/2025-03-17_103616.png)
+
+```bash
+sudo sh NVIDIA-Linux-x86_64-570.124.04.run
+apt install -y cuda-drivers
+reboot
+nvidia-smi
+```
+
 ![](images/2025-03-17_100910.png)
 
 ### 2.1 环境设置
@@ -67,30 +85,7 @@ conda activate vLLM
 
 ![2025-03-11_164411](images/2025-03-11_164411.png)
 
-#### 2.1.4 安装驱动
-
-```bash
-conda activate vLLM
-sudo apt update
-sudo apt upgrade -y
-sudo apt install -y build-essential dkms
-sudo update-initramfs -u
-```
-
-[NVIDIA GeForce 驱动程序 - N 卡驱动 | NVIDIA](https://www.nvidia.cn/geforce/drivers/)
-
-![](images/2025-03-17_103616.png)
-
-```bash
-sudo sh NVIDIA-Linux-x86_64-570.124.04.run
-apt install -y cuda-drivers
-reboot
-conda activate vLLM
-nvcc --version ## check the cuda version
-nvidia-smi
-```
-
-![](images/2025-03-17_100910.png)
+#### 2.1.4 安装CUDA
 
 [CUDA Toolkit Archive | NVIDIA Developer](https://developer.nvidia.com/cuda-toolkit-archive)
 
@@ -106,20 +101,21 @@ sudo sh cuda_12.8.0_570.86.10_linux.run
 ```
 vim /root/.bashrc
 
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-12.4/lib64
-export PATH=$PATH:/usr/local/cuda-12.4/bin
-export CUDA_HOME=$CUDA_HOME:/usr/local/cuda-12.4
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-12.8/lib64
+export PATH=$PATH:/usr/local/cuda-12.8/bin
+export CUDA_HOME=$CUDA_HOME:/usr/local/cuda-12.8
 
 source /root/.bashrc
 
 nvcc --version
 ```
 
-[download.pytorch.org/whl/torch/](https://download.pytorch.org/whl/torch/)
+#### 2.1.5 安装vLLM
 
-![](images/2025-03-11_174452.png)
-
-![](images/2025-03-11_175221.png)
+```
+pip install vllm==0.7.2
+vllm --version
+```
 
 ![](images/2025-03-11_175411.png)
 
