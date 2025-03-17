@@ -74,5 +74,9 @@ pip install langchain-community==0.3.19
 
 pip index versions langchain-openai
 pip install langchain-openai==0.3.8
+
+## langsmith 
+## pip index versions langsmith 
+## pip install langsmith==0.3.15
 ```
 
