@@ -52,15 +52,25 @@ poetry add langsmith==0.3.15
 poetry run langchain serve --port 8090 
 ```
 
-### 1.2. 案例代码
+## 2. 测试
+
+### 2.1. LangChain服务部署与链路监控
+
+### 2.1. LangChain消息管理与聊天历史存储
+
+#### 2.1.1 session_id
 
 ```python
 from langchain_openai import ChatOpenAI
-from langchain.schema import HumanMessage, SystemMessage, AIMessage
+from langchain.schema import HumanMessage, AIMessage
+
+from langchain_community.chat_message_histories import ChatMessageHistory
+from langchain_core.chat_history import BaseChatMessageHistory
+from langchain_core.runnables.history import RunnableWithMessageHistory
+
+from langchain.prompts import PromptTemplate, ChatPromptTemplate, MessagesPlaceholder
 import os
 
-# 从环境变量中获取 API 密钥
-openai_api_key = os.getenv("OPENAI_API_KEY")
 # 启用LangChain追踪
 os.environ["LANGSMITH_TRACING"] = "true"
 # 设置LangChain API密钥
@@ -70,6 +80,9 @@ os.environ["LANGCHAIN_PROJECT"] = "default"
 # 设置LangChain API端点地址
 os.environ["LANGCHAIN_ENDPOINT"] = "https://api.smith.langchain.com"
 
+# 从环境变量中获取 API 密钥
+openai_api_key = os.getenv("OPENAI_API_KEY")
+
 # 初始化 ChatOpenAI 实例
 chat = ChatOpenAI(
     model="deepseek-chat",
@@ -78,47 +91,75 @@ chat = ChatOpenAI(
     streaming=False
 )
 
-# 构建消息列表
-messages = [
-    SystemMessage(content="你是一个起名大师，你的名字叫徐大师"),
-    HumanMessage(content="你好徐大师, 你感觉如何？"),
-    AIMessage(content="你好，我状态非常好."),
-    HumanMessage(content="你叫什么名字"),
-]
+# 定义 ChatPromptTemplate
+prompt = ChatPromptTemplate.from_messages(
+    [
+        (
+            "system",
+            "You are an assistant who is good at {ability}. Response in 200 words or fewer."
+        ),
+        MessagesPlaceholder(variable_name="history"),  # 历史消息占位符
+        ("human", "{input}")  # 用户输入
+    ]
+)
 
-# 调用模型并获取响应
-response = chat.invoke(messages)
+# 将 prompt 和 chat 组合成一个 runnable
+runnable = prompt | chat
 
-# 打印响应内容
+# 用于存储会话历史的字典
+store = {}
+
+# 获取会话历史的函数
+def get_session_history(session_id: str) -> BaseChatMessageHistory:
+    if session_id not in store:
+        store[session_id] = ChatMessageHistory()
+    return store[session_id]
+
+# 创建 RunnableWithMessageHistory
+with_message_history = RunnableWithMessageHistory(
+    runnable,
+    get_session_history,
+    input_messages_key="input",  # 用户输入的键
+    history_messages_key="history"  # 历史消息的键
+)
+
+# 第一次调用
+response = with_message_history.invoke(
+    {"ability": "math", "input": "余弦是什么意思?"},  # 输入
+    config={"configurable": {"session_id": "abc123"}}  # 会话 ID
+)
+print(response.content)
+
+# 第二次调用
+response = with_message_history.invoke(
+    {"ability": "math", "input": "什么?"},  # 输入
+    config={"configurable": {"session_id": "abc123"}}  # 会话 ID
+)
+print(response.content)
+
+# 第三次调用
+response = with_message_history.invoke(
+    {"ability": "math", "input": "什么?"},  # 输入
+    config={"configurable": {"session_id": "abc456"}}  # 会话 ID
+)
 print(response.content)
 ```
 
-### 1.3. 部署LangChain程序
+#### 2.1.2 user_id & conversation_id
 
-[ LangServe](https://python.langchain.com/docs/langserve/)
-
-```bash
-pip install "langserve[all]"
-```
-
-```python
-from fastapi import FastAPI
-from fastapi.responses import RedirectResponse
-from langserve import add_routes
-
+```Python
 from langchain_openai import ChatOpenAI
-from langchain.schema import HumanMessage, SystemMessage, AIMessage
-from langchain.prompts import PromptTemplate
-from langchain_core.output_parsers import StrOutputParser
+from langchain.schema import HumanMessage, AIMessage
+
+from langchain_community.chat_message_histories import ChatMessageHistory
+from langchain_core.chat_history import BaseChatMessageHistory
+from langchain_core.runnables.history import RunnableWithMessageHistory
+
+from langchain.prompts import PromptTemplate, ChatPromptTemplate, MessagesPlaceholder
 import os
+from langchain_core.runnables import ConfigurableFieldSpec
+from langchain_core.output_parsers import StrOutputParser
 
-from fastapi import FastAPI, HTTPException
-from langchain_openai import ChatOpenAI
-import uvicorn
-from pydantic import BaseModel
-
-# 从环境变量中获取 API 密钥
-openai_api_key = os.getenv("OPENAI_API_KEY")
 # 启用LangChain追踪
 os.environ["LANGSMITH_TRACING"] = "true"
 # 设置LangChain API密钥
@@ -128,6 +169,9 @@ os.environ["LANGCHAIN_PROJECT"] = "default"
 # 设置LangChain API端点地址
 os.environ["LANGCHAIN_ENDPOINT"] = "https://api.smith.langchain.com"
 
+# 从环境变量中获取 API 密钥
+openai_api_key = os.getenv("OPENAI_API_KEY")
+
 # 初始化 ChatOpenAI 实例
 chat = ChatOpenAI(
     model="deepseek-chat",
@@ -136,49 +180,82 @@ chat = ChatOpenAI(
     streaming=False
 )
 
-prompt = PromptTemplate.from_template(template="你是一个{name}, 帮我起一个具有{country}特色的{sex}名字.")
-messages = prompt.format(name="算命大师", country="法国", sex="女孩")
+# 定义 ChatPromptTemplate
+prompt = ChatPromptTemplate.from_messages(
+    [
+        (
+            "system",
+            "You are an assistant who is good at {ability}. Response in 200 words or fewer."
+        ),
+        MessagesPlaceholder(variable_name="history"),  # 历史消息占位符
+        ("human", "{input}")  # 用户输入
+    ]
+)
 
 output_parser = StrOutputParser()
 
-chain = chat | output_parser
+# 将 prompt 和 chat 组合成一个 runnable
+runnable = prompt | chat | output_parser
 
-app = FastAPI(title="我的Langchain服务", version="v10")
+# 用于存储会话历史的字典
+store = {}
 
+# 获取会话历史的函数
+def get_session_history(user_id: str, conversation_id: str) -> BaseChatMessageHistory:
+    if (user_id, conversation_id) not in store:
+        store[(user_id, conversation_id)] = ChatMessageHistory()
+    return store[(user_id, conversation_id)]
 
-@app.get("/")
-async def redirect_root_to_docs():
-    return RedirectResponse("/docs")
+# 创建 RunnableWithMessageHistory
+with_message_history = RunnableWithMessageHistory(
+    runnable,
+    get_session_history,
+    input_messages_key="input",
+    history_messages_key="history",
+    history_factory_config=[
+        ConfigurableFieldSpec(
+            id="user_id",
+            annotation=str,
+            name="User ID",
+            description="用户的唯一标识符。",
+            default="",
+            is_shared=True,
+        ),
+        ConfigurableFieldSpec(
+            id="conversation_id",
+            annotation=str,
+            name="Conversation ID",
+            description="对话的唯一标识符。",
+            default="",
+            is_shared=True,
+        ),
+    ],
+)
 
+response = with_message_history.invoke(
+    {"ability": "math", "input": "余弦是什么意思？"},
+    config={"configurable": {"user_id": "123", "conversation_id": "1"}},
+)
+print(response)
 
-# 定义请求体模型
-class NameRequest(BaseModel):
-    name: str
-    country: str
-    sex: str
+# 记住
+response = with_message_history.invoke(
+    {"ability": "math", "input": "什么?"},
+    config={"configurable": {"user_id": "123", "conversation_id": "1"}},
+)
+print(response)
 
-app = FastAPI(title="我的Langchain服务", version="v10")
-
-@app.post("/generate_name/")
-async def generate_name(request: NameRequest):
-    try:
-        # 使用提取的参数调用模型
-        prompt = PromptTemplate.from_template(template="你是一个{name}, 帮我起一个具有{country}特色的{sex}名字.")
-        messages = prompt.format(name=request.name, country=request.country, sex=request.sex)
-        response = chain.invoke(messages)
-        return {"generated_name": response}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-# 添加 LangChain 路由
-add_routes(app, chat | StrOutputParser(), path="/chain")
-
-if __name__ == "__main__":
-    import uvicorn
-
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+response = with_message_history.invoke(
+    {"ability": "math", "input": "什么?"},
+    config={"configurable": {"user_id": "123", "conversation_id": "2"}},
+)
+print(response)
 ```
 
 
 
-[【LangChain教程】2025年吃透LangChain+LangGraph快速入门与底层原理教程](https://www.bilibili.com/video/BV1duKsevEwK?spm_id_from=333.788.videopod.episodes&vd_source=68a8583f88fde22ce39c9c2212b4cac4)
+**参考：**
+
+1. [【LangChain教程】2025年吃透LangChain+LangGraph快速入门与底层原理教程](https://www.bilibili.com/video/BV1duKsevEwK?spm_id_from=333.788.videopod.episodes&vd_source=68a8583f88fde22ce39c9c2212b4cac4)
+2. [LangChain服务部署与链路监控_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1uNQAYZE4C/?spm_id_from=333.1391.0.0&p=5&vd_source=68a8583f88fde22ce39c9c2212b4cac4)
+3. [ LangServe](https://python.langchain.com/docs/langserve/)

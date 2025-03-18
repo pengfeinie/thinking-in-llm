@@ -82,5 +82,7 @@ pip install langchain-openai==0.3.8
 ## langchain-cli
 ## pip index versions langchain-cli 
 ## pip install langchain-cli==0.0.36
+
+## pip install "langserve[all]"
 ```
 
