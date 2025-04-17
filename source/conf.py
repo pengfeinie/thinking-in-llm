@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'thinking-in-LLM'
+project = 'thinking-in-llm'
 copyright = '2024, pfnie'
 author = 'pfnie'
 release = '0.1'
