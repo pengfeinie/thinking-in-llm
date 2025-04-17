@@ -1,18 +1,17 @@
-.. thinking-in-LLM documentation master file, created by
+.. thinking-in-llm documentation master file, created by
    sphinx-quickstart on Tue Aug 27 12:52:37 2024.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to thinking-in-LLM's documentation!
+Welcome to thinking-in-llm's documentation!
 ===========================================
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 2
    :caption: Contents:
 
-   0000_AI客户端/index
-   0001_模型部署/index
-   0002_AI_Agent智能体/index
+   docs/0000_基础知识/index
+   docs/0001_模型部署/index
 
 
 
