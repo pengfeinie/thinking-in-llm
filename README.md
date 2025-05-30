@@ -1,6 +1,6 @@
 # thinking-in-llm
 
-在thinking-in-llm 目录中执行 `make html`，就会在 build/html 目录生成 html 相关文件。这样就可以直接在浏览器中打开 index.html。
+在thinking-in-llm 目录中执行 `make html`，就会在 build/html 目录生成 html 相关文件。可以在浏览器中打开 index.html。
 
 ```bash
 make html
