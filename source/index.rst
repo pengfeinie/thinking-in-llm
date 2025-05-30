@@ -12,6 +12,7 @@ Welcome to thinking-in-llm's documentation!
 
    docs/0000_基础知识/index
    docs/0001_模型部署/index
+   docs/0002_实战演练/index
 
 
 
