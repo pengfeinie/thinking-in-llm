@@ -51,3 +51,7 @@ Qwen2.5-32B-Instruct 本身是阿里开源的 **高性能指令微调模型**�
 
 蒸馏后的小模型（如 1.5B）性能显著超越原始基座，甚至接近 GPT-4。所有模型均支持 **免费商用（Apache 2.0）**，适合企业/个人集成使用。
 
+## 参考
+
+1. [保姆级教程！教你搭建一个纯本地、可联网、带本地知识库的私人 DeepSeek？_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1LYA8eCESA/?spm_id_from=333.788.videopod.sections&vd_source=68a8583f88fde22ce39c9c2212b4cac4)
+

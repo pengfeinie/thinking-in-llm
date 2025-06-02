@@ -2,7 +2,7 @@
 =================================
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 0
    :caption: Contents:
 
    0001_本地知识库的私人DeepSeek/README.md

@@ -7,7 +7,7 @@ Welcome to thinking-in-llm's documentation!
 ===========================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 0
    :caption: Contents:
 
    docs/0000_基础知识/index
