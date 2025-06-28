@@ -59,6 +59,14 @@ RAG(Retrieval-Augmented Generation, 检索增强生成)是一种结合信息检�
 
 ![](images/2.png)
 
+## AnythingLLM
+
+AnythingLLM：企业级知识库管理平台，支持多格式文档上传、向量数据库集成及灵活的API调用，适用于构建私有化问答系统。
+
+
+
+
+
 
 
 ## **参考**
