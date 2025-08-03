@@ -2,7 +2,7 @@
 =================================
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 1
    :caption: Contents:
 
    0001_对话客户端/README.md

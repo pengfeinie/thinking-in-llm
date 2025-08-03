@@ -78,7 +78,7 @@ sudo apt upgrade -y
 sudo apt install -y build-essential dkms
 ```
 
-```bin
+```bash
 sudo update-initramfs -u
 ```
 
