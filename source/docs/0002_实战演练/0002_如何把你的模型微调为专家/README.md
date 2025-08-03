@@ -14,8 +14,6 @@
 
 [https://docs.siliconflow.cn/cn/userguide/guides/fine-tune](https://docs.siliconflow.cn/cn/userguide/guides/fine-tune)
 
-我们的数据集为：[data3.jsonl](images/data3.jsonl)
-
 我们的测试结果如下：
 
 ![](images/1.png)

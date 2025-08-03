@@ -1,4 +1,4 @@
-# 基于vLLM本地部署企业级DeepSeek-R1实战
+# 基于vLLM本地部署企业级大模型
 
 ## 1.vLLM
 
@@ -146,8 +146,6 @@ conda activate vLLM
 
 CUDA_VISIBLE_DEVICES=0 vllm serve /data/models/deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B --tensor-parallel-size 1 --max-model-len 32768 --enforce-eager
 ```
-
-
 
 **参考：**
 
