@@ -31,7 +31,7 @@ exclude_patterns = []
 html_context = {
 	"display_github": True,
 	"github_user":"pengfeinie",
-	"github_repo":"thinking-in-LLM",
+	"github_repo":"thinking-in-llm",
 	"github_version":"main/source/"
 }
 
