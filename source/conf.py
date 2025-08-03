@@ -55,7 +55,7 @@ html_show_sourcelink = True
 html_show_sphinx = True
 
 html_theme_options = {
-   'navigation_depth': 4, #根据实际需求调整
-       'collapse_navigation': False,
+    'navigation_depth': 2, #根据实际需求调整
+    'collapse_navigation': False,
     'sticky_navigation': True,
 }

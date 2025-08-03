@@ -1,4 +1,4 @@
-# 如何把你的 DeepSeek-R1 微调为某个领域的专家
+# 如何把你的模型微调为专家
 
 ## 模型微调简介
 
@@ -32,8 +32,6 @@
 
 简单来说，有了 `Colab` ，可以让你没有在比较好的硬件资源的情况下，能够在线上微调模型，如果只是学习的话，免费的资源就够了。另外，市面上很多模型微调的 DEMO ，都是通过  `Colab` 给出的，大家可以非常方便的直接进行调试运行。
 
-
-
 ![](images/2.png)
 
 将运行时类型改为 T4 GPU（`NVIDIA` 推出的一款高性能 GPU，特别适合深度学习任务）：
@@ -58,8 +56,6 @@
 !pip install bitsandbytes unsloth_zoo
 ```
 
-
-
 ```Python
 from unsloth import FastLanguageModel # 导入FastLanguageModel类，用来加载和使用模型
 import torch #导入torch工具，用于处理模型的数学运算
@@ -76,8 +72,6 @@ model, tokenizer = FastLanguageModel.from_pretrained(  # 修正了方法名的�
 ```
 
 ![](images/4.png)
-
-
 
 ```python
 prompt_style = """以下是描述任务的指令，以及提供进一步上下文的输入。
@@ -105,7 +99,7 @@ inputs = tokenizer([prompt_style.format(question,"")],return_tensors="pt").to("c
 # 使用tokenizer对格式化后的问题进行编码，并移动到 GPU
 
 outputs = model.generate(
-	input_ids=inputs.input_ids,
+    input_ids=inputs.input_ids,
     attention_mask=inputs.attention_mask,
     max_new_tokens=1200,
     use_cache=True
@@ -122,8 +116,6 @@ print(response[0])
 ![](images/5.png)
 
 ![](images/6.png)
-
-
 
 ```Python
 prompt_style = """以下是描述任务的指令，以及提供进一步上下文的输入。
@@ -165,8 +157,7 @@ def formatting_prompts_func(examples):
     return {
         "text": texts
     }
-    
+
 dataset = dataset.map(formatting_prompts_func, batched=True)
 dataset("text")[0]
 ```
-
