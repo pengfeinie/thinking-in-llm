@@ -5,12 +5,8 @@
    :maxdepth: 4
    :caption: Contents:
 
-   0001_Ollama/README.md
-   0002_CheryStudio/README.md
-   0003_AnythingLLM/README.md
-   0004_LMStudio/README.md
-   0005_vLLM/README.md
-   0006_vLLM_Ollama_llama.cpp/README.md
+   0001_vLLM/README.md
+   0002_vLLM_Ollama_llama.cpp/README.md
 
 
 
